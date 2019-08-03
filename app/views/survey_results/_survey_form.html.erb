@@ -1,0 +1,37 @@
+<% if @survey_form_id.present? %>
+  <h3><%= @survey_form.name %></h3>
+    
+  <%= form_tag(controller: "survey_results", action: "create_survey_result", method: "post", :html => { :class => "form-horizontal teacher" } ) do %>
+    <% if survey_result.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(survey_result.errors.count, "error") %> prohibited this survey_result from being saved:</h2>
+
+        <ul>
+        <% survey_result.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <%= hidden_field_tag :survey_form_id, @survey_form_id %>
+    <%= hidden_field_tag :questions, @questions %>
+    
+    <% @questions.each do |q| %>
+      <div class="form-group">
+        <%= label_tag "#{q.strip}", q, :class => 'control-label col-lg-2' %>
+        <div class="col-lg-10">
+          <%= text_field_tag "#{q.strip}", '', {:class => 'form-control'} %>
+        </div>
+      </div><br/>
+    <% end %>
+
+    <div class="form-group">
+      <div class="col-lg-offset-2 col-lg-10">
+        <%= submit_tag "Submit", :class => 'btn btn-primary' %>
+      </div>
+    </div>
+  <% end %>
+<% else %>
+  <h4 style="color:red;">No survery form for your department.</h4>
+<% end %>

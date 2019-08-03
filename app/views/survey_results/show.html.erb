@@ -1,0 +1,22 @@
+
+<br><br><br>
+<p id="notice"><%= notice %></p>
+
+<dl class="dl-horizontal">
+
+ <dt><strong>Student:</strong></dt>
+ <dd><%= @survey_result.student_id %></dd>
+
+ <dt><strong>Class:</strong></dt>
+ <dd><%= @survey_result.class %></dd>
+
+ <dt><strong>Department:</strong></dt>
+ <dd><%= @survey_result.survey_form.department.name %></dd>
+
+  <dt><strong>Result:</strong></dt>
+  <dd><%= @survey_result.result %></dd>
+ 
+</dl>
+
+<%= link_to 'Edit', edit_survey_result_path(@survey_result) %> |
+<%= link_to 'Back', survey_results_path %>

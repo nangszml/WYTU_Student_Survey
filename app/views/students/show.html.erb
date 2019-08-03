@@ -1,0 +1,33 @@
+<%- model_class = Student -%>
+<div class="page-header">
+  <h2><%=t '.title', :default => model_class.model_name.human.titleize %></h2>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:email) %>:</strong></dt>
+  <dd><%= @student.email %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:encrypted_password) %>:</strong></dt>
+  <dd><%= @student.encrypted_password %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:reset_password_token) %>:</strong></dt>
+  <dd><%= @student.reset_password_token %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:reset_password_sent_at) %>:</strong></dt>
+  <dd><%= @student.reset_password_sent_at %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:remember_created_at) %>:</strong></dt>
+  <dd><%= @student.remember_created_at %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
+  <dd><%= @student.name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:rollno) %>:</strong></dt>
+  <dd><%= @student.rollno %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:department_id) %>:</strong></dt>
+  <dd><%= @student.department.name %></dd>
+</dl>
+
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              students_path, :class => 'btn btn-default'  %>
+<%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_student_path(@student), :class => 'btn btn-default' %>
+<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              student_path(@student),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>

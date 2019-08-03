@@ -1,0 +1,46 @@
+<%= form_with(model: survey_result, local: true) do |form| %>
+  <% if survey_result.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(survey_result.errors.count, "error") %> prohibited this survey_result from being saved:</h2>
+
+      <ul>
+      <% survey_result.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :student_id %>
+    <%= form.number_field :student_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :class %>
+    <%= form.text_field :class %>
+  </div>
+
+  <div class="field">
+    <%= form.label :department_id %>
+    <%= form.select :department_id, options_for_select(Department.all, "id", "name") %>
+    <%=form.error_span(:department_id) %>
+  </div>
+
+  <!-- <div class="form-group">
+    <%= f.label :department_id, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.select :department_id, options_from_collection_for_select(Department.all, "id", "name"), :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:department_id) %>
+  </div> -->
+
+  <div class="field">
+    <%= form.label :result %>
+    <%= form.text_field :result %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
