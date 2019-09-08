@@ -7,7 +7,7 @@
   <thead>
     <tr>
       <th>Student</th>
-      <th>Class</th>
+      <th>Class Name</th>
       <th>Department</th>
       <th>Result</th>
       <th colspan="3"></th>
@@ -18,7 +18,7 @@
     <% @survey_results.each do |survey_result| %>
       <tr>
         <td><%= survey_result.student.name %></td>
-        <td><%= survey_result.class %></td>
+        <td><%= survey_result.student.class_name %></td>
         <td><%= survey_result.survey_form.department.name %></td>
         <td><%= survey_result.result %></td>
         <td><%= link_to 'Show', survey_result,  :class => 'btn btn-default btn-xs' %>

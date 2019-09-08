@@ -1,5 +1,5 @@
 <% if @survey_form_id.present? %>
-  <h3><%= @survey_form.name %></h3>
+  <h2 style="margin-top: 40px;"><%= @survey_form.name %></h2>
     
   <%= form_tag(controller: "survey_results", action: "create_survey_result", method: "post", :html => { :class => "form-horizontal teacher" } ) do %>
     <% if survey_result.errors.any? %>
@@ -21,7 +21,16 @@
       <div class="form-group">
         <%= label_tag "#{q.strip}", q, :class => 'control-label col-lg-2' %>
         <div class="col-lg-10">
-          <%= text_field_tag "#{q.strip}", '', {:class => 'form-control'} %>
+          <p>
+            <!--<b>Rating</b><br/>-->
+            <%= radio_button_tag :rating, 'A' %> A,  
+            <%= radio_button_tag :rating, 'B' %> B,  
+            <%= radio_button_tag :rating, 'C' %> C,  
+            <%= radio_button_tag :rating, 'D' %> D,  
+            <%= radio_button_tag :rating, 'E' %> E
+        </p>
+
+          <!--<%= text_field_tag "#{q.strip}", '', {:class => 'form-control'} %>-->
         </div>
       </div><br/>
     <% end %>
