@@ -17,17 +17,17 @@
     <%= hidden_field_tag :survey_form_id, @survey_form_id %>
     <%= hidden_field_tag :questions, @questions %>
     
-    <% @questions.each do |q| %>
+    <% @questions.each_with_index do |q, index| %>
       <div class="form-group">
         <%= label_tag "#{q.strip}", q, :class => 'control-label col-lg-2' %>
         <div class="col-lg-10">
           <p>
             <!--<b>Rating</b><br/>-->
-            <%= radio_button_tag :rating, 'A' %> A,  
-            <%= radio_button_tag :rating, 'B' %> B,  
-            <%= radio_button_tag :rating, 'C' %> C,  
-            <%= radio_button_tag :rating, 'D' %> D,  
-            <%= radio_button_tag :rating, 'E' %> E
+            <%= radio_button_tag "rating_#{index}", 'A' %> A
+            <%= radio_button_tag "rating_#{index}", 'B' %> B
+            <%= radio_button_tag "rating_#{index}", 'C' %> C  
+            <%= radio_button_tag "rating_#{index}", 'D' %> D  
+            <%= radio_button_tag "rating_#{index}", 'E' %> E
         </p>
 
           <!--<%= text_field_tag "#{q.strip}", '', {:class => 'form-control'} %>-->

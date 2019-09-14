@@ -27,11 +27,11 @@ class SurveyResultsController < ApplicationController
   def create_survey_result
     result = {}
     params[:questions].split("  ").each_with_index do |q,i|
-      result[q] = params[q]
+      result[q] = params["rating_#{i}"]
     end
     puts result
     # inspect result
-    survey_result = SurveyResult.create(survey_form_id: params[:survey_form_id], student_id: current_student.id, class_name: current_student.class_name, result: result)
+    survey_result = SurveyResult.create(survey_form_id: params[:survey_form_id].to_i, student_id: current_student.id, class_name: current_student.class_name, result: result)
 
     respond_to do |format|
       if survey_result.save

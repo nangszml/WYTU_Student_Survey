@@ -1,0 +1,33 @@
+<br><br>
+<div class="container">
+    <h3>Student Survey Result</h3>
+    <hr>
+</div>
+<% if @questions.present? %>
+<div class="container">
+    <table class="table table-lg table-bordered">
+        <thead>
+            <tr class="success">
+                <th scope="col"></th>
+                <th scope="col">A</th>
+                <th scope="col">B</th>
+                <th scope="col">C</th>
+                <th scope="col">D</th>
+                <th scope="col">E</th>
+            </tr>
+        </thead>
+    <tbody>
+        <% @result.each do |k,v| %>
+            <tr>
+            <th scope="row"><%= k %></th>
+            <td><%= v["A"] %></td>
+            <td><%= v["B"] %></td>
+            <td><%= v["C"] %></td>
+            <td><%= v["D"] %></td>
+            <td><%= v["E"] %></td>
+            </tr>
+        <% end %>
+    </tbody>
+    </table>
+<div>
+<% end %>

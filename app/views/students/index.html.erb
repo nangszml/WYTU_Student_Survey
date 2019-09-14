@@ -3,13 +3,12 @@
 <div class="page-header">
   <h2><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h2>
 </div>
-
-<div class="dropdown">
-  <button class="btn dropdown-toggle">Year
-    <i class="fa fa-caret-down"></i>
-  </button>
-  
-</div>
+<%= form_tag(students_path, method: :get, class: 'form-inline') do %>
+  <div class="form-group">
+    <%= select_tag "year", options_for_select(['1st Year', '2nd Year', '3rd Year', '4th Year', '5th Year', '6th Year'], params[:year]), include_blank: "All", class: 'form-control' %>
+  </div>
+  <%= submit_tag 'Search', :class => "btn btn-primary" %>
+<% end %>
 
 <table class="table table-striped">
   <thead>

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'dashboard/index'
 	devise_for :students, controllers: { sessions: 'students/sessions' }
 	devise_for :teachers, skip: :registrations, controllers: { sessions: 'teachers/sessions' }
 
@@ -13,7 +14,8 @@ Rails.application.routes.draw do
 	end
 
 	authenticated :teacher do
-		root 'departments#index', as: :authenticated_teacher_dashboard
+		root 'dashboard#index', as: :dashboard
+		# root 'departments#index', as: :authenticated_teacher_dashboard
 	end
 
 	root 'welcome#index'
