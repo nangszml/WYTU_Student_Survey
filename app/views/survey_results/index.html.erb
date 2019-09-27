@@ -3,6 +3,8 @@
 
 <h2 style="margin-top: 40px;">Survey Results</h2>
 
+<% if @student.present? %>
+
 <table class="table table-striped">
   <thead>
     <tr>
@@ -31,5 +33,7 @@
 </table>
 
 <br>
+
+<% end -%>
 
 <!--<%= link_to 'New Survey Result', new_survey_result_path %>
