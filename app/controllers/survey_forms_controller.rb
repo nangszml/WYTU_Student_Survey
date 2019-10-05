@@ -15,6 +15,9 @@ class SurveyFormsController < ApplicationController
   # GET /survey_forms/new
   def new
     @survey_form = SurveyForm.new
+    if params[:year].present?
+      @survey_form = Student.where(class_name: params[:year])
+    end
   end
 
   # GET /survey_forms/1/edit
@@ -27,7 +30,7 @@ class SurveyFormsController < ApplicationController
   # POST /survey_forms.json
   def create
     @survey_form = SurveyForm.new(survey_form_params)
-    sf = SurveyForm.create(name: @survey_form.name, description: @survey_form.description, 
+    sf = SurveyForm.create(name: @survey_form.name, class_name: @survey_form.class_name, 
       department_id: @survey_form.department_id, question: @survey_form.question.split(","))
     respond_to do |format|
       if sf
@@ -43,7 +46,7 @@ class SurveyFormsController < ApplicationController
   # PATCH/PUT /survey_forms/1
   # PATCH/PUT /survey_forms/1.json
   def update
-    sf = @survey_form.update(name: params[:survey_form][:name], description: params[:survey_form][:description], 
+    sf = @survey_form.update(name: params[:survey_form][:name], class_name: params[:survey_form][:class_name], 
       department_id: params[:survey_form][:department_id], question: params[:survey_form][:question].split(","))
     respond_to do |format|
       if sf

@@ -17,7 +17,7 @@
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:name) %></th>
-      <th><%= model_class.human_attribute_name(:description) %></th>
+      <th><%= model_class.human_attribute_name(:class_name) %></th>
       <th><%= model_class.human_attribute_name(:question) %></th>
       <th><%= model_class.human_attribute_name(:department_id) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
@@ -28,7 +28,7 @@
       <tr>
         <!-- <td><%= link_to survey_form.id, survey_form_path(survey_form) %></td> -->
         <td><%= survey_form.name %></td>
-        <td><%= survey_form.description %></td>
+        <td><%= survey_form.class_name %></td>
         <td><%= survey_form.question %></td>
         <td><%= survey_form.department.name %></td>
         <td>

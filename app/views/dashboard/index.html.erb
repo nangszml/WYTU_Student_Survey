@@ -1,19 +1,26 @@
 <br>
-<div class="container">
+<!--<div class="container">-->
     <h2>Student Survey Result</h2>
     <hr>
-</div>
+<!--</div>-->
+
+<div class="form-inline">
+    <%= select_tag "year", options_for_select(['1st Year', '2nd Year', '3rd Year', '4th Year', '5th Year', '6th Year'], params[:year]), include_blank: "All", class: 'form-control' %>
+    <%= submit_tag 'Search', :class => "btn btn-primary" %>
+  </div>
+  <br>
+
 <% if @questions.present? %>
 <div class="container">
     <table class="table table-lg table-bordered">
         <thead>
             <tr class="success">
                 <th scope="col"></th>
-                <th scope="col">A</th>
-                <th scope="col">B</th>
-                <th scope="col">C</th>
-                <th scope="col">D</th>
-                <th scope="col">E</th>
+                <th scope="col">Excellent</th>
+                <th scope="col">Good</th>
+                <th scope="col">Fair</th>
+                <th scope="col">Bad</th>
+                <!--<th scope="col">E</th>-->
             </tr>
         </thead>
     <tbody>
@@ -24,7 +31,7 @@
             <td><%= v["B"] %></td>
             <td><%= v["C"] %></td>
             <td><%= v["D"] %></td>
-            <td><%= v["E"] %></td>
+            <!--<td><%= v["E"] %></td>-->
             </tr>
         <% end %>
     </tbody>

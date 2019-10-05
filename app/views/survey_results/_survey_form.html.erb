@@ -19,15 +19,15 @@
     
     <% @questions.each_with_index do |q, index| %>
       <div class="form-group">
-        <%= label_tag "#{q.strip}", q, :class => 'control-label col-lg-2' %>
-        <div class="col-lg-10">
+        <%= label_tag "#{q.strip}", q, :class => 'control-label col-lg-6' %>
+        <div class="col-lg-16">
           <p>
             <!--<b>Rating</b><br/>-->
-            <%= radio_button_tag "rating_#{index}", 'A' %> A
-            <%= radio_button_tag "rating_#{index}", 'B' %> B
-            <%= radio_button_tag "rating_#{index}", 'C' %> C  
-            <%= radio_button_tag "rating_#{index}", 'D' %> D  
-            <%= radio_button_tag "rating_#{index}", 'E' %> E
+            <%= radio_button_tag "rating_#{index}", 'A' %> Excellent
+            <%= radio_button_tag "rating_#{index}", 'B' %> Good
+            <%= radio_button_tag "rating_#{index}", 'C' %> Fair  
+            <%= radio_button_tag "rating_#{index}", 'D' %> Bad  
+            <!--<%= radio_button_tag "rating_#{index}", 'E' %> E-->
         </p>
 
           <!--<%= text_field_tag "#{q.strip}", '', {:class => 'form-control'} %>-->
@@ -42,5 +42,5 @@
     </div>
   <% end %>
 <% else %>
-  <h4 style="color:red;">No survery form for your department.</h4>
+  <h4 style="color:red;">No survery form for your class.</h4>
 <% end %>
