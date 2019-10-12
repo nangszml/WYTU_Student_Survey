@@ -30,7 +30,7 @@
         <td><%= survey_form.name %></td>
         <td><%= survey_form.class_name %></td>
         <td><%= survey_form.question %></td>
-        <td><%= survey_form.department.name %></td>
+        <td><%= Department.find(survey_form.department_id).name %></td>
         <td>
           <%= link_to t('.show', :default => t("helpers.links.show")),
                       survey_form_path(survey_form), :class => 'btn btn-default btn-xs' %>
