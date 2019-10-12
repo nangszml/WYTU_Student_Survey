@@ -1,3 +1,11 @@
+<br><br><br>
+<%= form_tag(new_survey_result_path, method: :get, class: 'form-inline') do %>
+  <div class="form-group">
+    <%= select_tag :class_survey_name, options_for_select(@survey_list, params[:class_survey_name]), include_blank: "", class: 'form-control' %>
+  </div>
+  <%= submit_tag 'Search', :class => "btn btn-primary" %>
+<% end %>
+
 <%= render 'survey_form', survey_result: @survey_result %>
 
 <!--<%= link_to 'Back', survey_results_path %>-->

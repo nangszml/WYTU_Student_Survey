@@ -5,7 +5,14 @@ class SurveyResultsController < ApplicationController
   # GET /survey_results.json
   def index
     # @survey_results = SurveyResult.where(department_id: current_teacher.department_id)
-    @survey_results = current_teacher.department.survey_form.survey_results
+    @survey_results = []
+    @surveys = current_teacher.department.survey_forms
+    @surveys.each  do |s|
+      s.survey_results.each do |r|
+        @survey_results << r
+      end
+    end 
+    # inspect params
   end
 
   # GET /survey_results/1
@@ -15,19 +22,28 @@ class SurveyResultsController < ApplicationController
 
   # GET /survey_results/new
   def new
+    # inspect params
     @survey_result = SurveyResult.new
     dept_id = current_student.department_id
-    @survey_form = SurveyForm.where(department_id: dept_id).last
-    if @survey_form.present?
-      @survey_form_id = @survey_form.id
-      @questions = @survey_form.question
+    @survey_list = SurveyForm.where(department_id: dept_id, class_name: current_student.class_name).pluck(:name)
+    if params[:class_survey_name].present?
+      @survey_form = SurveyForm.find_by(department_id: dept_id, name: params[:class_survey_name])
+      if @survey_form.present?
+        @survey_form_id = @survey_form.id
+        @questions = @survey_form.question
+      end
     end
   end
 
   def create_survey_result
     result = {}
-    params[:questions].split("  ").each_with_index do |q,i|
-      result[q] = params["rating_#{i}"]
+    questions = params[:questions].split("  ").reject { |c| c.empty? }
+    questions.each_with_index do |q,i|
+      if i < 8
+        result[q] = params["rating_#{i}"]
+      else  
+        result[q] =  params["#{q.strip}"]
+      end 
     end
     puts result
     # inspect result

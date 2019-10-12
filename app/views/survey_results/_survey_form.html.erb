@@ -18,21 +18,29 @@
     <%= hidden_field_tag :questions, @questions %>
     
     <% @questions.each_with_index do |q, index| %>
-      <div class="form-group">
-        <%= label_tag "#{q.strip}", q, :class => 'control-label col-lg-6' %>
-        <div class="col-lg-16">
-          <p>
-            <!--<b>Rating</b><br/>-->
-            <%= radio_button_tag "rating_#{index}", 'A' %> Excellent
-            <%= radio_button_tag "rating_#{index}", 'B' %> Good
-            <%= radio_button_tag "rating_#{index}", 'C' %> Fair  
-            <%= radio_button_tag "rating_#{index}", 'D' %> Bad  
-            <!--<%= radio_button_tag "rating_#{index}", 'E' %> E-->
-        </p>
+      <% if index < 8 %>
+        <div class="form-group">
+          <%= label_tag "#{q.strip}", q, :class => 'control-label col-lg-6' %>
+            <div class="col-lg-16">
+              <p>
+                <!--<b>Rating</b><br/>-->
+                <%= radio_button_tag "rating_#{index}", 'A' %> Excellent
+                <%= radio_button_tag "rating_#{index}", 'B' %> Good
+                <%= radio_button_tag "rating_#{index}", 'C' %> Fair  
+                <%= radio_button_tag "rating_#{index}", 'D' %> Bad  
+                <!--<%= radio_button_tag "rating_#{index}", 'E' %> E-->
+            </p>
 
-          <!--<%= text_field_tag "#{q.strip}", '', {:class => 'form-control'} %>-->
-        </div>
-      </div><br/>
+              <!--<%= text_field_tag "#{q.strip}", '', {:class => 'form-control'} %>-->
+            </div>
+            </divs>
+        <% else %>
+          <div class="form-group">
+            <%= label_tag "#{q.strip}", q, :class => 'control-label col-lg-6' %>
+            <%= text_area_tag "#{q.strip}", '', {:class => 'form-control'} %>
+          </div>
+        <% end %>
+      <br/>
     <% end %>
 
     <div class="form-group">
@@ -40,6 +48,7 @@
         <%= submit_tag "Submit", :class => 'btn btn-primary' %>
       </div>
     </div>
+    <br><br>
   <% end %>
 <% else %>
   <h4 style="color:red;">No survery form for your class.</h4>

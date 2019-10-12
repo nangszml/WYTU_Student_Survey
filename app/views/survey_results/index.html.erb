@@ -3,12 +3,13 @@
 
 <h2 style="margin-top: 40px;">Survey Results</h2>
 
-<% if @student.present? %>
+<% if @survey_results.present? %>
 
 <table class="table table-striped">
   <thead>
     <tr>
       <th>Student</th>
+      <th>Survey Name</th>
       <th>Class Name</th>
       <th>Department</th>
       <th>Result</th>
@@ -20,11 +21,12 @@
     <% @survey_results.each do |survey_result| %>
       <tr>
         <td><%= survey_result.student.name %></td>
+        <td><%= survey_result.survey_form.name %></td>
         <td><%= survey_result.student.class_name %></td>
         <td><%= survey_result.survey_form.department.name %></td>
         <td><%= survey_result.result %></td>
         <td><%= link_to 'Show', survey_result,  :class => 'btn btn-default btn-xs' %>
-        <%= link_to 'Edit', edit_survey_result_path(survey_result), :class => 'btn btn-default btn-xs' %>
+        <%#= link_to 'Edit', edit_survey_result_path(survey_result), :class => 'btn btn-default btn-xs' %>
         <%= link_to 'Destroy', survey_result, method: :delete, data: { confirm: 'Are you sure?' },  :class => 'btn btn-xs btn-danger'%>
         </td>
       </tr>
