@@ -23,7 +23,7 @@ class SurveyFormsController < ApplicationController
   # GET /survey_forms/1/edit
   def edit
     # inspect @survey_form
-    @survey_form.question = @survey_form.question.join(', ')
+    @survey_form.question = @survey_form.question.join(',')
   end
 
   # POST /survey_forms
@@ -46,8 +46,12 @@ class SurveyFormsController < ApplicationController
   # PATCH/PUT /survey_forms/1
   # PATCH/PUT /survey_forms/1.json
   def update
+    questions = []
+    params[:survey_form][:question].split(",").each do |q|
+      questions << q.strip
+    end
     sf = @survey_form.update(name: params[:survey_form][:name], class_name: params[:survey_form][:class_name], 
-      department_id: params[:survey_form][:department_id], question: params[:survey_form][:question].split(","))
+      department_id: params[:survey_form][:department_id], question: questions)
     respond_to do |format|
       if sf
         format.html { redirect_to @survey_form, notice: 'Survey form was successfully updated.' }
