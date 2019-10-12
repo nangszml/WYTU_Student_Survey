@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_26_160006) do
+ActiveRecord::Schema.define(version: 2019_09_14_165734) do
 
   create_table "departments", force: :cascade do |t|
     t.string "name"
@@ -44,12 +44,14 @@ ActiveRecord::Schema.define(version: 2019_07_26_160006) do
   end
 
   create_table "survey_results", force: :cascade do |t|
-    t.integer "survey_form_id"
+    t.integer "department_id"
     t.json "result"
     t.integer "student_id"
     t.string "class_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "survey_form_id"
+    t.index ["survey_form_id"], name: "index_survey_results_on_survey_form_id"
   end
 
   create_table "teachers", force: :cascade do |t|
