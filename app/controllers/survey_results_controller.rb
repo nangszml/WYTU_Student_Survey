@@ -36,9 +36,14 @@ class SurveyResultsController < ApplicationController
   end
 
   def create_survey_result
+    @survey_form = SurveyForm.find_by(department_id: current_student.department_id, name: params[:class_survey_name])
+    if @survey_form.present?
+      @questions = @survey_form.question
+    end
+    # inspect params
     result = {}
-    questions = params[:questions].split("  ").reject { |c| c.empty? }
-    questions.each_with_index do |q,i|
+    # questions = params[:questions].split("  ").reject { |c| c.empty? }
+    @questions.each_with_index do |q,i|
       if i < 8
         result[q] = params["rating_#{i}"]
       else  
