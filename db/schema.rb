@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2019_09_14_165734) do
+=======
+ActiveRecord::Schema.define(version: 2019_10_05_020401) do
+>>>>>>> fd733bd4223129364949c69196e998c656d365ba
 
   create_table "departments", force: :cascade do |t|
     t.string "name"
@@ -36,15 +40,18 @@ ActiveRecord::Schema.define(version: 2019_09_14_165734) do
 
   create_table "survey_forms", force: :cascade do |t|
     t.string "name"
-    t.text "description"
     t.text "question"
     t.integer "department_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "class_name"
   end
 
   create_table "survey_results", force: :cascade do |t|
+<<<<<<< HEAD
     t.integer "department_id"
+=======
+>>>>>>> fd733bd4223129364949c69196e998c656d365ba
     t.json "result"
     t.integer "student_id"
     t.string "class_name"
